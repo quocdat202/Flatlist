@@ -1,20 +1,51 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View, Text, FlatList } from "react-native";
+import UserNameList from "./components/UserNameList";
+export default App = () => {
+  const [data, setData] = useState([
+    {
+      id: 1,
+      name: 'Quốc Đạt',
+    },
+    {
+      id: 2,
+      name: 'Tường Hải',
+    },
+    {
+      id: 3,
+      name: 'Thanh Hòa',
+    },
+    {
+      id: 4,
+      name: 'Chí Định',
+    },
 
-export default function App() {
+  ]);
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
+    <FlatList
+      data={data}
+      renderItem={({ item }) => <UserNameList name={item.name} />}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={{ paddingLeft: 16, paddingRight: 16 }}
+    />
+
+  );
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "column",
+    marginTop: 20,
+    justifyContent: "center",
+  },
+  loadingText: {
+    alignSelf: "center",
+  },
+  containe: {
+    display: "flex",
+    flexDirection: "column",
   },
 });
